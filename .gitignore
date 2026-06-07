@@ -1,0 +1,68 @@
+# Build directories
+
+/build/
+/out/
+/cmake-build-*/
+
+# CMake
+
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+Testing/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# FetchContent downloads (GoogleTest, FFFなど)
+
+_deps/
+
+# Visual Studio
+
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Build Outputs
+
+Debug/
+Release/
+x64/
+x86/
+Win32/
+
+# MSBuild
+
+*.obj
+*.pch
+*.pdb
+*.ilk
+*.lib
+*.exp
+*.idb
+
+# Executables
+
+*.exe
+*.dll
+
+# CTest
+
+LastTest.log
+
+# VS Code
+
+.vscode/
+
+# Temporary files
+
+*.tmp
+*.log
+
+# OS files
+
+Thumbs.db
+Desktop.ini

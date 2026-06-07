@@ -1,0 +1,17 @@
+#include <gtest/gtest.h>
+
+extern "C" {
+#include "fff.h"
+}
+
+DEFINE_FFF_GLOBALS;
+
+FAKE_VALUE_FUNC(int, my_function, int);
+
+TEST(FffTest, FakeReturnValue)
+{
+    my_function_fake.return_val = 123;
+
+    EXPECT_EQ(my_function(10), 123);
+    EXPECT_EQ(my_function_fake.call_count, 1);
+}
