@@ -1,16 +1,24 @@
-# FFFでよく使うマクロ:
-FAKE_VOID_FUNC(func);
-FAKE_VOID_FUNC(func, int);
-FAKE_VALUE_FUNC(int, func);
-FAKE_VALUE_FUNC(int, func, int);
-FAKE_VALUE_FUNC(bool, func, int, const char*);
+#include <gtest/gtest.h>
 
-# 呼び出し回数確認:
-EXPECT_EQ(my_func_fake.call_count, 1);
+extern "C" {
+#include "fff.h"
+}
 
-# 戻り値設定:
-my_func_fake.return_val = 123;
+DEFINE_FFF_GLOBALS;
 
-# リセット
-RESET_FAKE(my_func);
-FFF_RESET_HISTORY();
+FAKE_VALUE_FUNC(int, read_sensor);
+
+int get_temperature()
+{
+    return read_sensor();
+}
+
+TEST(TemperatureTest, ReturnsSensorValue)
+{
+    RESET_FAKE(read_sensor);
+
+    read_sensor_fake.return_val = 25;
+
+    EXPECT_EQ(get_temperature(), 25);
+    EXPECT_EQ(read_sensor_fake.call_count, 1);
+}
